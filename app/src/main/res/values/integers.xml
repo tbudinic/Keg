@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="battery_critical">10</integer>
+
+    <integer name="pressure_default">16</integer>
+    <integer name="pressure_light">16</integer>
+    <integer name="pressure_dark">18</integer>
+    <integer name="pressure_custom_min">16</integer>
+    <integer name="pressure_custom_max">22</integer>
+</resources>

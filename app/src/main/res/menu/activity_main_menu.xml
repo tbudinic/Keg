@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content">
+
+    <item
+        android:id="@+id/action_pressure"
+        android:icon="@drawable/pressuregauge"
+        android:title="Pressure"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_beerfacts"
+        android:title="Beer Facts"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_settings"
+        android:title="Settings"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_faq"
+        android:title="FAQ"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_about"
+        android:title="About"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_tap_simulation"
+        android:title="**Tap Sim**"
+        app:showAsAction="never" />
+
+</menu>

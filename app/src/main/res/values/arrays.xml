@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="listFrequencyArray">
+        <item>15 Minutes</item>
+        <item>30 Minutes</item>
+        <item>45 Minutes</item>
+        <item>1 Hour</item>
+    </string-array>
+
+    <integer-array name="listFrequencyValues">
+        <item>15</item>
+        <item>30</item>
+        <item>45</item>
+        <item>60</item>
+    </integer-array>
+
+    <string-array name="listKegArray">
+        <item>Empty</item>
+        <item>25%</item>
+        <item>50%</item>
+        <item>75%</item>
+        <item>Full</item>
+    </string-array>
+
+    <integer-array name="listKegValues">
+        <item>0</item>
+        <item>25</item>
+        <item>50</item>
+        <item>75</item>
+        <item>100</item>
+    </integer-array>
+
+    <string-array name="listBatteryArray">
+        <item>Dead</item>
+        <item>Critical</item>
+        <item>25%</item>
+        <item>50%</item>
+        <item>75%</item>
+        <item>Full</item>
+    </string-array>
+
+    <integer-array name="listBatteryValues">
+        <item>0</item>
+        <item>10</item>
+        <item>25</item>
+        <item>50</item>
+        <item>75</item>
+        <item>100</item>
+    </integer-array>
+
+    <string-array name="notification_type_entries">
+        <item>Battery is Low (25)</item>
+        <item>Battery is Almost Dead (10)</item>
+        <item>Keg is Low (25)</item>
+        <item>Connection Timeout</item>
+    </string-array>
+
+    <integer-array name="notification_type_values">
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+    </integer-array>
+
+    <string-array name="notification_settings_entries">
+        <item>Sound</item>
+        <item>Vibrate</item>
+        <item>LED</item>
+    </string-array>
+
+    <integer-array name="notification_settings_values">
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+    </integer-array>
+</resources>

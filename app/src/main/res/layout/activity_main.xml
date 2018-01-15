@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cro.smartkeg.smartkeg.MainActivity" >
+
+    <!-- Battery _______________________________________________________________________________ -->
+    <!-- Battery - Background -->
+    <ImageView
+        android:id="@+id/imageViewBatteryBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbarMain"
+        app:layout_constraintBottom_toTopOf="@id/imageViewKeg"
+        app:srcCompat="@drawable/batterybackground" />
+    <!-- Battery - Level -->
+    <ImageView
+        android:id="@+id/imageViewBattery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/imageViewBatteryBackground"
+        app:layout_constraintStart_toStartOf="@id/imageViewBatteryBackground"
+        app:layout_constraintTop_toTopOf="@id/imageViewBatteryBackground"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewBatteryBackground"
+        app:srcCompat="@drawable/battery100" />
+    <!-- Battery - Charging/Charged -->
+    <ImageView
+        android:id="@+id/imageViewBatteryCharging"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="@id/imageViewBatteryBackground"
+        app:layout_constraintStart_toStartOf="@id/imageViewBatteryBackground"
+        app:layout_constraintTop_toTopOf="@id/imageViewBatteryBackground"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewBatteryBackground"
+        app:srcCompat="@drawable/batterycharging"
+        android:visibility="gone" />
+    <!-- Battery - Text - Checking -->
+    <TextView
+        android:id="@+id/textViewBatteryRechargingIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/battery_text"
+        android:textAlignment="textStart"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewBatteryBackground"
+        app:layout_constraintStart_toEndOf="@id/imageViewBatteryBackground"
+        app:layout_constraintTop_toTopOf="@id/imageViewBatteryBackground" />
+
+
+    <!-- Keg ___________________________________________________________________________________ -->
+    <!-- Keg - Beer -->
+    <ImageView
+        android:id="@+id/imageViewKegBeer"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageViewBatteryBackground"
+        app:srcCompat="@drawable/beer" />
+    <!-- Keg -->
+    <ImageView
+        android:id="@+id/imageViewKeg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageViewBatteryBackground"
+        app:srcCompat="@drawable/kegfullsize" />
+    <!-- Keg - Checking
+    <ProgressBar
+        android:id="@+id/progressBarKeg"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/textViewKegChecking"
+        app:layout_constraintEnd_toEndOf="@id/imageViewKeg"
+        app:layout_constraintStart_toStartOf="@id/imageViewKeg"
+        app:layout_constraintTop_toTopOf="@id/imageViewKeg" /> -->
+    <!-- Keg - Text - Checking
+    <TextView
+        android:id="@+id/textViewKegChecking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/checking_keg_level"
+        android:textAlignment="center"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewKeg"
+        app:layout_constraintEnd_toEndOf="@id/imageViewKeg"
+        app:layout_constraintStart_toStartOf="@id/imageViewKeg"
+        app:layout_constraintTop_toBottomOf="@id/progressBarKeg" /> -->
+    <!-- Keg - Bluetooth
+    <ImageView
+        android:id="@+id/imageViewKegBluetooth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/textViewKegBluetooth"
+        app:layout_constraintEnd_toEndOf="@id/imageViewKeg"
+        app:layout_constraintStart_toStartOf="@id/imageViewKeg"
+        app:layout_constraintTop_toTopOf="@id/imageViewKeg"
+        app:srcCompat="@android:drawable/stat_sys_data_bluetooth" /> -->
+    <!-- Keg - Text - Bluetooth
+    <TextView
+        android:id="@+id/textViewKegBluetooth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewKeg"
+        app:layout_constraintEnd_toEndOf="@id/imageViewKeg"
+        app:layout_constraintStart_toStartOf="@id/imageViewKeg"
+        app:layout_constraintTop_toBottomOf="@id/imageViewKegBluetooth" /> -->
+
+
+    <!-- Bluetooth _____________________________________________________________________________ -->
+    <!-- Bluetooth - Icon -->
+    <ImageView
+        android:id="@+id/imageViewBluetooth"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="4dp"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/toolbarMain"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/bluetooth_icon" />
+    <!-- Bluetooth - Signal -->
+    <ImageView
+        android:id="@+id/imageViewBluetoothSignal"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="4dp"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/toolbarMain"
+        app:layout_constraintStart_toEndOf="@id/imageViewBluetooth"
+        app:srcCompat="@drawable/wireless_icon" />
+    <!-- Bluetooth - Keg -->
+    <ImageView
+        android:id="@+id/imageViewBluetoothKeg"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="4dp"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/toolbarMain"
+        app:layout_constraintStart_toEndOf="@id/imageViewBluetoothSignal"
+        app:srcCompat="@drawable/kegfullsize" />
+    <!-- Bluetooth - Text -->
+    <TextView
+        android:id="@+id/textViewBluetoothStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:text="Searching..."
+        app:layout_constraintTop_toBottomOf="@id/imageViewBluetooth"
+        app:layout_constraintStart_toStartOf="@id/imageViewBluetooth"
+        app:layout_constraintEnd_toEndOf="@id/imageViewBluetoothKeg"/>
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarMain"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <SeekBar
+        android:id="@+id/seekbarBattery"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbarMain"
+        app:layout_constraintEnd_toStartOf="@id/switchBatteryCharging"
+        android:max="100"
+        android:progress="100"/>
+    <Switch
+        android:id="@+id/switchBatteryCharging"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbarMain"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:checked="false"/>
+
+
+</android.support.constraint.ConstraintLayout>

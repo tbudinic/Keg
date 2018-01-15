@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <PreferenceCategory
+        android:title="@string/preference_category_notification"
+        android:key="preference_key_storage_settings">
+        <SwitchPreference
+            android:key="preference_key_notification"
+            android:title="@string/preference_title_notification"
+            android:summary="@string/preference_summary_notification"
+            android:defaultValue="true" />
+        <MultiSelectListPreference
+            android:key="preference_key_notification_types"
+            android:title="Notification Types"
+            android:summary="Battery and Keg Levels"
+            android:dialogTitle="Notification Types"
+            android:entries="@array/notification_type_entries"
+            android:entryValues="@array/notification_type_entries"
+            android:dependency="preference_key_notification" />
+        <MultiSelectListPreference
+            android:key="preference_key_notification_settings"
+            android:title="Notification Settings"
+            android:summary="Enable sound, vibration, LED"
+            android:entries="@array/notification_settings_entries"
+            android:entryValues="@array/notification_settings_entries"
+            android:dependency="preference_key_notification" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/preference_category_frequency"
+        android:key="preference_key_storage_settings">
+        <ListPreference
+            android:key="preference_key_frequency"
+            android:title="@string/preference_title_frequency"
+            android:summary="@string/preference_summary_frequency"
+            android:defaultValue="30"
+            android:entries="@array/listFrequencyArray"
+            android:entryValues="@array/listFrequencyArray" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Bluetooth"
+        android:key="preference_key_storage_settings">
+        <SwitchPreference
+            android:key="preference_key_bluetooth_on"
+            android:title="Auto Bluetooth On"
+            android:summary="Automatically turn on Bluetooth when the app loads"
+            android:defaultValue="true" />
+        <SwitchPreference
+            android:key="preference_key_bluetooth_off"
+            android:title="Auto Bluetooth Off"
+            android:summary="Automatically turn Bluetooth off when closing the app, if it was off when the app started"
+            android:defaultValue="true" />
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

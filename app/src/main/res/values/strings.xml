@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">SmartKeg</string>
+    <string name="battery_text">\Fully recharged\nin 30 Minutes</string>
+    <string name="bluetooth_off">Your bluetooth is off.\nTap to enable.</string>
+    <string name="bluetooth_not_paired">Tap to enter bluetooth settings and pair with the SmartKeg.\nHint: The password is 1111.</string>
+    <string name="bluetooth_device_not_found">SmartKeg not found.\nYou may be out of range. </string>
+    <string name="checking_keg_level">Checking how much beer you have left.\nDo not pour.</string>
+
+    <string name="pressure_note">**Optional**\nSet the desired pressure in the keg.</string>
+    <string name="default_pressure">Default Pressure (16 psi)</string>
+    <string name="light_beer_pressure">Light Beer (16 psi)</string>
+    <string name="dark_beer_pressure">Dark Beer (18 psi)</string>
+    <string name="custom_pressure">Custom Pressure</string>
+
+    <string name="preference_category_notification">Notifications</string>
+    <string name="preference_title_notification">Notifications</string>
+    <string name="preference_summary_notification">Enable Notifications?</string>
+    <string name="preference_title_sound">Sound</string>
+    <string name="preference_summary_sound">Play Sound?</string>
+    <string name="preference_title_vibrate">Vibrate</string>
+    <string name="preference_summary_vibrate">Vibrate?</string>
+    <string name="preference_title_led">LED</string>
+    <string name="preference_summary_led">Flash the LED?</string>
+    <string name="preference_category_frequency">Frequency</string>
+    <string name="preference_title_frequency">How often to check the keg level</string>
+    <string name="preference_summary_frequency">Every 30 Minutes</string>
+
+
+</resources>

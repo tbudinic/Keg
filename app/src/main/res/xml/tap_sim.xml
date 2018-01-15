@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Simulate the tap - data is accessed through the background service -->
+    <PreferenceCategory
+        android:title="Bluetooth"
+        android:key="preference_key_sim">
+        <SwitchPreference
+            android:key="preference_key_bluetooth_state"
+            android:title="Bluetooth"
+            android:summary="Simulate Bluetooth State"
+            android:defaultValue="true" />
+
+        <SwitchPreference
+            android:key="preference_key_bluetooth_pair"
+            android:title="Paired"
+            android:summary="Simulate Bluetooth Paired"
+            android:defaultValue="true"
+            android:dependency="preference_key_bluetooth_state" />
+
+        <SwitchPreference
+            android:key="preference_key_bluetooth_inrange"
+            android:title="In Range"
+            android:summary="Simulate Bluetooth Connected"
+            android:defaultValue="true"
+            android:dependency="preference_key_bluetooth_pair" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Keg"
+        android:key="preference_key_sim">
+
+        <ListPreference
+            android:key="preference_key_keg_level"
+            android:title="Level"
+            android:summary="Simulate Keg Level"
+            android:defaultValue="100"
+            android:entries="@array/listKegArray"
+            android:entryValues="@array/listKegArray" />
+
+        <SwitchPreference
+            android:key="preference_key_keg_measuring"
+            android:title="Measuring"
+            android:summary="Simulate Keg Measuring"
+            android:defaultValue="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Battery"
+        android:key="preference_key_sim">
+
+        <SwitchPreference
+            android:key="preference_key_battery_charging"
+            android:title="Charging"
+            android:summary="Simulate Battery Charging"
+            android:defaultValue="false" />
+
+        <ListPreference
+            android:key="preference_key_battery_level"
+            android:title="Level"
+            android:summary="Simulate Battery Level"
+            android:defaultValue="100"
+            android:entries="@array/listBatteryArray"
+            android:entryValues="@array/listBatteryArray" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
