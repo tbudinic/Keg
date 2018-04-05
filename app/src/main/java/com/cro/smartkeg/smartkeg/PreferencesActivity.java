@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 
-public class MyPreferencesActivity extends PreferenceActivity {
-
+public class PreferencesActivity extends PreferenceActivity {
+    //TODO add toolbar
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

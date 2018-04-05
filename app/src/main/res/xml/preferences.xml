@@ -45,8 +45,8 @@
         <SwitchPreference
             android:key="preference_key_bluetooth_on"
             android:title="Auto Bluetooth On"
-            android:summary="Automatically turn on Bluetooth when the app loads"
-            android:defaultValue="true" />
+            android:summary="Allow the app to turn Bluetooth on, overriding the permission popup"
+            android:defaultValue="false" />
         <SwitchPreference
             android:key="preference_key_bluetooth_off"
             android:title="Auto Bluetooth Off"

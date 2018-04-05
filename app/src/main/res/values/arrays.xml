@@ -73,4 +73,54 @@
         <item>1</item>
         <item>1</item>
     </integer-array>
+
+
+
+
+    <integer-array name="Services">
+        <item>0xDEAD</item>
+        <item>0x180D</item>
+    </integer-array>
+
+    <integer-array name="writeCharacteristics">
+        <item>0xF001</item>
+        <item>0xF007</item>
+        <item>0xE002</item>
+        <item>0xE003</item>
+        <item>0xD000</item>
+        <item>0xD001</item>
+        <item>0xD002</item>
+        <item>0xD003</item>
+        <item>0xD004</item>
+        <item>0xC000</item>
+        <item>0xC001</item>
+    </integer-array>
+
+    <integer-array name="notificationCharacteristics">
+        <item>0xF000</item>
+        <item>0xF002</item>
+        <item>0xF003</item>
+        <item>0xF004</item>
+        <item>0xF005</item>
+        <item>0xF006</item>
+        <item>0xF008</item>
+        <item>0xF009</item>
+        <item>0xF00A</item>
+        <item>0xF00B</item>
+        <item>0xE000</item>
+        <item>0xE001</item>
+        <item>0xE004</item>
+    </integer-array>
+
+    <integer-array name="basicNotification">
+        <item>0xF000</item>
+        <item>0xE001</item>
+        <item>0xF00B</item>
+    </integer-array>
+
+    <integer-array name="basicWrite">
+        <item>0xF001</item>
+        <item>0xE003</item>
+    </integer-array>
+
 </resources>
