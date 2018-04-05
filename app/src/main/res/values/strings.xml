@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">SmartKeg</string>
-    <string name="battery_text">\Fully recharged\nin 30 Minutes</string>
+    <string name="battery_text">Fully recharged\nin 30 Minutes</string>
     <string name="bluetooth_off">Your bluetooth is off.\nTap to enable.</string>
     <string name="bluetooth_not_paired">Tap to enter bluetooth settings and pair with the SmartKeg.\nHint: The password is 1111.</string>
     <string name="bluetooth_device_not_found">SmartKeg not found.\nYou may be out of range. </string>
@@ -15,7 +15,7 @@
     <string name="preference_category_notification">Notifications</string>
     <string name="preference_title_notification">Notifications</string>
     <string name="preference_summary_notification">Enable Notifications?</string>
-    <string name="preference_title_sound">Sound</string>
+    <string name="preference_title_sound">Sound</string>`
     <string name="preference_summary_sound">Play Sound?</string>
     <string name="preference_title_vibrate">Vibrate</string>
     <string name="preference_summary_vibrate">Vibrate?</string>
@@ -25,5 +25,6 @@
     <string name="preference_title_frequency">How often to check the keg level</string>
     <string name="preference_summary_frequency">Every 30 Minutes</string>
 
+    <string name="device_name">Keg Pump!</string>
 
 </resources>

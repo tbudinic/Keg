@@ -2,9 +2,9 @@
 <resources>
     <integer name="battery_critical">10</integer>
 
-    <integer name="pressure_default">16</integer>
-    <integer name="pressure_light">16</integer>
-    <integer name="pressure_dark">18</integer>
-    <integer name="pressure_custom_min">16</integer>
-    <integer name="pressure_custom_max">22</integer>
+    <integer name="pressure_default">1600</integer>
+    <integer name="pressure_light">1600</integer>
+    <integer name="pressure_dark">1800</integer>
+    <integer name="pressure_custom_min">1600</integer>
+    <integer name="pressure_custom_max">2200</integer>
 </resources>

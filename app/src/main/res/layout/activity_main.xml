@@ -11,8 +11,8 @@
     <!-- Battery - Background -->
     <ImageView
         android:id="@+id/imageViewBatteryBackground"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="125dp"
+        android:layout_height="80dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -25,8 +25,8 @@
     <!-- Battery - Level -->
     <ImageView
         android:id="@+id/imageViewBattery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="125dp"
+        android:layout_height="80dp"
         app:layout_constraintEnd_toEndOf="@id/imageViewBatteryBackground"
         app:layout_constraintStart_toStartOf="@id/imageViewBatteryBackground"
         app:layout_constraintTop_toTopOf="@id/imageViewBatteryBackground"
@@ -35,7 +35,7 @@
     <!-- Battery - Charging/Charged -->
     <ImageView
         android:id="@+id/imageViewBatteryCharging"
-        android:layout_width="100dp"
+        android:layout_width="125dp"
         android:layout_height="50dp"
         app:layout_constraintEnd_toEndOf="@id/imageViewBatteryBackground"
         app:layout_constraintStart_toStartOf="@id/imageViewBatteryBackground"
@@ -51,7 +51,7 @@
         android:layout_marginStart="8dp"
         android:text="@string/battery_text"
         android:textAlignment="textStart"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/imageViewBatteryBackground"
         app:layout_constraintStart_toEndOf="@id/imageViewBatteryBackground"
         app:layout_constraintTop_toTopOf="@id/imageViewBatteryBackground" />
@@ -61,22 +61,27 @@
     <!-- Keg - Beer -->
     <ImageView
         android:id="@+id/imageViewKegBeer"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageViewBatteryBackground"
+        android:layout_width="0dp"
+        android:layout_height="355dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toTopOf="@id/imageViewKeg"
+        app:layout_constraintStart_toStartOf="@id/imageViewKeg"
+        app:layout_constraintEnd_toEndOf="@id/imageViewKeg"
         app:srcCompat="@drawable/beer" />
+    <!-- Keg - Beer Whiteout -->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageViewKeg"
+        android:background="@android:color/white"/>
     <!-- Keg -->
     <ImageView
         android:id="@+id/imageViewKeg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="350dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -85,18 +90,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageViewBatteryBackground"
-        app:srcCompat="@drawable/kegfullsize" />
-    <!-- Keg - Checking
+        app:srcCompat="@drawable/kegfullsize_outline" />
+
+    <!-- Keg - Checking -->
     <ProgressBar
         android:id="@+id/progressBarKeg"
         style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/textViewKegChecking"
+        app:layout_constraintTop_toTopOf="@id/imageViewKeg"
         app:layout_constraintEnd_toEndOf="@id/imageViewKeg"
         app:layout_constraintStart_toStartOf="@id/imageViewKeg"
-        app:layout_constraintTop_toTopOf="@id/imageViewKeg" /> -->
+        app:layout_constraintBottom_toBottomOf="@id/imageViewKeg" />
     <!-- Keg - Text - Checking
     <TextView
         android:id="@+id/textViewKegChecking"
@@ -175,11 +181,23 @@
         app:layout_constraintStart_toStartOf="@id/imageViewBluetooth"
         app:layout_constraintEnd_toEndOf="@id/imageViewBluetoothKeg"/>
 
+    <TextView
+        android:id="@+id/textViewLastUpdateTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginBottom="4dp"
+        android:visibility="visible"
+        android:text="updated x minutes ago"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbarMain"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="?android:attr/actionBarSize"
         android:background="@color/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -203,6 +221,25 @@
         app:layout_constraintTop_toBottomOf="@id/toolbarMain"
         app:layout_constraintEnd_toEndOf="parent"
         android:checked="false"/>
+    <SeekBar
+        android:id="@+id/seekbarBeer"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintTop_toBottomOf="@id/seekbarBattery"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:max="4"
+        android:progress="4"/>
+    <Button
+        android:id="@+id/buttonNewKeg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintTop_toBottomOf="@id/seekbarBeer"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="New Keg" />
 
 
 </android.support.constraint.ConstraintLayout>
