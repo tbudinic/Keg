@@ -19,8 +19,10 @@ import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 
 import java.util.List;
+import java.util.Set;
 
 public class MainService extends Service {
 
@@ -32,6 +34,8 @@ public class MainService extends Service {
     public void onCreate() {
         super.onCreate();
 
+        Log.i("Service oncreate called", "service started");
+
         bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
         bluetoothAdapter = bluetoothManager.getAdapter();
 
@@ -42,7 +46,7 @@ public class MainService extends Service {
 
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this,"SmartKegChannelID")
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setSmallIcon(R.drawable.kegfullsize)
                 .setContentTitle("SmartKeg")
                 .setContentText("App is running in the background, monitoring your keg")
                 .setContentIntent(pendingIntent);
@@ -55,6 +59,15 @@ public class MainService extends Service {
         }
         startForeground(1, notification);
 
+
+
+        IntentFilter myIntentFilter = new IntentFilter(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED);
+        registerReceiver(onBroadcastReceive, myIntentFilter);
+
+        if (isKegConnected())
+            startService(new Intent(getApplicationContext(), BLE_Service.class));
+
+        Log.i("Service oncreate called", "oncreate finished");
 
                 /*Log.i("MyBroadcastReceiver", "Broadcast received");
         String action = intent.getAction();
@@ -99,8 +112,7 @@ public class MainService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        IntentFilter myIntentFilter = new IntentFilter(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED);
-        LocalBroadcastManager.getInstance(this).registerReceiver(onBroadcastReceive, myIntentFilter);
+
 
         return super.onStartCommand(intent, flags, startId);
     }
@@ -129,11 +141,14 @@ public class MainService extends Service {
 
     private boolean isKegConnected () {
         Boolean connected = false;
-        List<BluetoothDevice> devices = bluetoothManager.getConnectedDevices(BluetoothProfile.GATT);
-        if (devices != null)
-            for(BluetoothDevice device : devices)
-                if(device.getName().equals(getResources().getString(R.string.device_name)))
+        Set<BluetoothDevice> bondedDevices = bluetoothAdapter.getBondedDevices();
+        if (bondedDevices != null)
+            for(BluetoothDevice device : bondedDevices) {
+                Log.i("Bluetooth devices", device.toString());
+                if (device.getName().equals(getResources().getString(R.string.device_name)))
                     connected = true;
+            }
+        Log.i("isKegConnected", connected.toString());
         return connected;
     }
 

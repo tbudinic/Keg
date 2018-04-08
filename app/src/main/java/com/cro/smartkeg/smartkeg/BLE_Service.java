@@ -304,13 +304,13 @@ public class BLE_Service extends Service {
         public void run() {
             if (charID == 0xF000){
                 Log.i("Pressure is", stringToSet);
-                int pressure = Integer.parseInt(stringToSet);
+                float pressure = Float.parseFloat(stringToSet);
                 sendLocalBroadcastAndSave("CURRENT_PRESSURE", "PRESSURE", pressure);
             }
             else if (charID == 0xE001){
                 Log.i("Fullness is", stringToSet);
                 int beer = Integer.parseInt(stringToSet);
-                sendLocalBroadcastAndSave("REFERENCE_PRESSURE", "PRESSURE", beer);
+                sendLocalBroadcastAndSave("BEER_LEVEL", "LEVEL", beer);
             }
 
             else if (charID == 0xE003){
@@ -328,7 +328,7 @@ public class BLE_Service extends Service {
 
             else if (charID == 0xF001){
                 Log.i("Ref Pressure is", stringToSet);
-                int ref_pressure = Integer.parseInt(stringToSet);
+                float ref_pressure = Float.parseFloat(stringToSet);
                 sendLocalBroadcastAndSave("REFERENCE_PRESSURE", "PRESSURE", ref_pressure);
             }
             else if (charID == 0xF00B){
@@ -337,7 +337,7 @@ public class BLE_Service extends Service {
                 Float adjusted = battery_voltage - MIN_VOLTAGE;
                 Float range = MAX_VOLTAGE - MIN_VOLTAGE;
                 Float percentage = adjusted / range;
-                sendLocalBroadcastAndSave("SET_BATTERY","BATTERY", Math.round(percentage*100));
+                sendLocalBroadcastAndSave("BATTERY_LEVEL","BATTERY", Math.round(percentage*100));
             }
         }
     }
@@ -465,6 +465,8 @@ public class BLE_Service extends Service {
     }
 
     private void sendLocalBroadcastAndSave (String action, String extraName, String extraData) {
+        Log.i("BLE Data Sent and Saved", action +" : "+ extraName +" : "+ extraData);
+
         Intent i = new Intent(action);
         i.putExtra(extraName, extraData);
         LocalBroadcastManager.getInstance(this).sendBroadcast(i);
@@ -475,6 +477,8 @@ public class BLE_Service extends Service {
         editor.apply();
     }
     private void sendLocalBroadcastAndSave (String action, String extraName, int extraData) {
+        Log.i("BLE Data Sent and Saved", action +" : "+ extraName +" : "+ extraData);
+
         Intent i = new Intent(action);
         i.putExtra(extraName, extraData);
         LocalBroadcastManager.getInstance(this).sendBroadcast(i);
@@ -484,7 +488,23 @@ public class BLE_Service extends Service {
         editor.putInt(action+"-"+extraName, extraData);
         editor.apply();
     }
+
+    private void sendLocalBroadcastAndSave (String action, String extraName, float extraData) {
+        Log.i("BLE Data Sent and Saved", action +" : "+ extraName +" : "+ extraData);
+
+        Intent i = new Intent(action);
+        i.putExtra(extraName, extraData);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(i);
+
+        SharedPreferences mySharedPreferences = getSharedPreferences("SMARTKEG", MODE_PRIVATE);
+        SharedPreferences.Editor editor = mySharedPreferences.edit();
+        editor.putFloat(action+"-"+extraName, extraData);
+        editor.apply();
+    }
+
     private void sendLocalBroadcastAndSave (String action, String extraName, boolean extraData) {
+        Log.i("BLE Data Sent and Saved", action +" : "+ extraName +" : "+ extraData);
+
         Intent i = new Intent(action);
         i.putExtra(extraName, extraData);
         LocalBroadcastManager.getInstance(this).sendBroadcast(i);

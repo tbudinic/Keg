@@ -157,7 +157,7 @@ public class PressureActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        LocalBroadcastManager.getInstance(this).registerReceiver(onBroadcastReceive, new IntentFilter("SmartKeg"));
+        LocalBroadcastManager.getInstance(this).registerReceiver(onBroadcastReceive, new IntentFilter("SMARTKEG"));
     }
 
 

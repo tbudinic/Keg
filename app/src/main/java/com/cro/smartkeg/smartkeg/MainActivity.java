@@ -1,5 +1,6 @@
 package com.cro.smartkeg.smartkeg;
 
+import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.app.ActivityManager;
 import android.bluetooth.BluetoothAdapter;
@@ -12,9 +13,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.AnimationDrawable;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -66,6 +70,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Log.i("Permission Bluetooth", ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH)+"");
+        Log.i("Permission Admin", ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_ADMIN)+"");
+        Log.i("Permission Coarse", ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)+"");
+
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 3); //TODO check if not already granted, follow tutorial at https://developer.android.com/training/permissions/requesting.html#java
 
         //define and set toolbar
         Toolbar myToolbar = findViewById(R.id.toolbarMain);
@@ -170,13 +180,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        LocalBroadcastManager.getInstance(this).registerReceiver(onBroadcastReceive, new IntentFilter("SmartKeg"));
+        Log.i("Main Activity", "onResume started");
+
+        IntentFilter myIntentFilter = new IntentFilter("BATTERY_LEVEL");
+        myIntentFilter.addAction("BEER_LEVEL");
+        myIntentFilter.addAction("KEG_SIZE");
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(onBroadcastReceive, myIntentFilter);
         registerReceiver(onBroadcastReceive, new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED));
         registerReceiver(onBroadcastReceive, new IntentFilter(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED));
 
         SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean autoBluetoothOn = myPreferences.getBoolean("preference_key_bluetooth_on", false);
-        if (autoBluetoothOn && !bluetoothAdapter.isEnabled()) {
+        if ((autoBluetoothOn && !bluetoothAdapter.isEnabled()) || (bluetoothAdapter.isEnabled() && isPaired())) {
+            Log.i("Main Activity", "starting service");
             isBluetoothOK = true;
             bluetoothAdapter.enable();
             if (!isMyServiceRunning(MainService.class))
@@ -187,15 +204,18 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(enableBtIntent, 1);
         }
 
+        //Intent grantPermission = new Intent(Permission.ACCESS_COARSE_LOCATION);
+        //startActivityForResult(grantPermission, 2);
+
 
         //SharedPreferences data = getSharedPreferences("preference_key_storage_settings", MODE_PRIVATE);
         //int battlevel = data.getInt("batteryLevel",0);
         //boolean battcharging = data.getBoolean("batteryRecharging", false);
-        battLevel = mySharedPreferences.getInt("SET_BATTERY_LEVEL-LEVEL", 100);
+        battLevel = mySharedPreferences.getInt("BATTERY_LEVEL-LEVEL", 100);
         battRecharge = mySharedPreferences.getBoolean("BATTERY_RECHARGE", false);
         setBatteryImage(battLevel,battRecharge);
 
-        beerLevel = mySharedPreferences.getInt("SET_BEER_LEVEL-LEVEL", 100);
+        beerLevel = mySharedPreferences.getInt("BEER_LEVEL-LEVEL", 100);
         setBeerLevel(beerLevel);
 
         if (!bluetoothAdapter.isEnabled())
@@ -212,6 +232,8 @@ public class MainActivity extends AppCompatActivity {
         battSeekbar.setProgress(battLevel);
         Switch battRechargeSwitch = findViewById(R.id.switchBatteryCharging);
         battRechargeSwitch.setChecked(battRecharge);
+
+        Log.i("Main Activity", "onResume finished");
 
     }
 
@@ -230,9 +252,9 @@ public class MainActivity extends AppCompatActivity {
 
         //TODO DO NOT SAVE VALUES, WILL OVERRIDE SERVICES VALUES
         SharedPreferences.Editor editor = mySharedPreferences.edit();
-        editor.putInt("SET_BATTERY_LEVEL-LEVEL", battLevel);
+        editor.putInt("BATTERY_LEVEL-LEVEL", battLevel);
         editor.putBoolean("BATTERY_RECHARGE", battRecharge);
-        editor.putInt("SET_BEER_LEVEL-LEVEL", beerLevel);
+        editor.putInt("BEER_LEVEL-LEVEL", beerLevel);
         editor.putBoolean("CURRENTLY_MEASURING",currentlyMeasuring);
         editor.apply();
     }
@@ -262,20 +284,22 @@ public class MainActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             Log.i("Main Activity", "Broadcast received");
             String action = intent.getAction();
+            Log.i("Action is", action);
             if (action != null)
                 switch (action) {
-                    case "SetBatteryLevel":
-                        setBatteryLevel(intent.getIntExtra("BatteryLevel", 100)); //TODO parse int...
+                    case "BATTERY_LEVEL":
+                        Log.i("Battery is", intent.getIntExtra("BATTERY", 100)+"");
+                        setBatteryLevel(intent.getIntExtra("BATTERY", 100)); //TODO parse int...
                         break;
 
                     case "SetBatteryRechargeState":
                         setBatteryRecharging(intent.getBooleanExtra("BatteryRecharging", false));
                         break;
 
-                    case "SetBeerLevel":
+                    case "BEER_LEVEL":
                         if (measuringKegProgressBar.getVisibility() == View.VISIBLE)
                             measuringKegProgressBar.setVisibility(View.GONE);
-                            setBeerLevel(intent.getIntExtra("BeerLevel", 100));
+                            setBeerLevel(intent.getIntExtra("LEVEL", 100));
                         break;
 
                     case "MeasuringLevel":
@@ -283,7 +307,7 @@ public class MainActivity extends AppCompatActivity {
                         currentlyMeasuring = false;
                         break;
 
-                    case "NewKeg":
+                    case "NEW_KEG":
                         newKegDialog();
                         break;
 
