@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i("Permission Bluetooth", ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH)+"");
         Log.i("Permission Admin", ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_ADMIN)+"");
         Log.i("Permission Coarse", ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)+"");
-
+        //Third time's a charm
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 3); //TODO check if not already granted, follow tutorial at https://developer.android.com/training/permissions/requesting.html#java
 
         //define and set toolbar
