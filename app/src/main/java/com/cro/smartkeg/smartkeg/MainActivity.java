@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //This is the second one 8======D
-
+        //stupid things
         Log.i("Permission Bluetooth", ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH)+"");
         Log.i("Permission Admin", ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_ADMIN)+"");
         Log.i("Permission Coarse", ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)+"");
