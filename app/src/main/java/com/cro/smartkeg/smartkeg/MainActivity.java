@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //Haha tony i will conflict you!
+        //This is the new master!  The new branch I saw!
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.i("Permission Bluetooth", ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH)+"");
